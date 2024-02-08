@@ -1,25 +1,34 @@
-name: Run Azure Login with OpenID Connect
-on: [push]
-
-permissions:
-      id-token: write
-      contents: read
+name: Run Deployment Managment Groups
+on:
+  push:
+    branches:
+      -bicep
       
-jobs: 
+permissions:
+  id-token: write
+  contents: read
+jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    environment: 'Azure-Jacob'
     steps:
-    - name: 'Az CLI login'
-      uses: azure/login@v1
-      
-      with:
+
+      - name: 'Az CLI login'
+        uses: azure/login@v1
+        with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-  
-    - name: 'Run Azure CLI commands'
-      run: |
+      - name: 'Run az commands'
+        run: |
           az account show
           az group list
-          pwd 
+
+      - name: 'Run managment group commands'
+        run: |
+              dateYMD=$(date +%Y%m%dT%H%M%S%NZ)
+              NAME="alz-MGDeployment-${dateYMD}"
+              LOCATION="eastus"
+              TEMPLATEFILE="@infra-as-code/bicep/modules/managementGroups/managementGroups.bicep"
+              PARAMETERS="@infra-as-code/bicep/modules/managementGroups/parameters/managementGroups.parameters.all.json"
+
+              az deployment tenant create --name ${NAME:0:63} --location $LOCATION --template-file $TEMPLATEFILE --parameters $PARAMETERS
