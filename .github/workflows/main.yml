@@ -26,6 +26,6 @@ jobs:
               NAME="alz-MGDeployment-${dateYMD}"
               LOCATION="eastus"
               TEMPLATEFILE="https://github.com/jacobrhouse/ALZ-Bicep-001infra-as-code/bicep/modules/managementGroups/managementGroups.bicep"
-              PARAMETERS="@https://github.com/jacobrhouse/ALZ-Bicep-001/infra-as-code/bicep/modules/managementGroups/parameters/managementGroups.parameters.all.json"
+              PARAMETERS="@infra-as-code/bicep/modules/managementGroups/parameters/managementGroups.parameters.all.json"
 
               az deployment tenant create --name ${NAME:0:63} --location $LOCATION --template-file $TEMPLATEFILE --parameters $PARAMETERS
