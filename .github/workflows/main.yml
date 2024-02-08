@@ -2,7 +2,7 @@ name: Run Deployment Managment Groups
 on:
   push:
     branches:
-      -bicep
+      -main
       
 permissions:
   id-token: write
