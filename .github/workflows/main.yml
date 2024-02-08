@@ -1,6 +1,9 @@
 name: Run Deployment Managment Groups
-on: [push]
-
+on:
+  push:
+    branches:
+      -bicep
+      
 permissions:
   id-token: write
   contents: read
