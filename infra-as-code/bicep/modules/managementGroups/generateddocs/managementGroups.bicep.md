@@ -23,7 +23,7 @@ parTelemetryOptOut | No       | Set Parameter to true to Opt-out of deployment t
 
 Prefix used for the management group hierarchy. This management group will be created as part of the deployment.
 
-- Default value: `alz`
+- Default value: `nyl`
 
 ### parTopLevelManagementGroupSuffix
 
@@ -37,7 +37,7 @@ Optional suffix for the management group hierarchy. This suffix will be appended
 
 Display name for top level management group. This name will be applied to the management group prefix defined in parTopLevelManagementGroupPrefix parameter.
 
-- Default value: `Azure Landing Zones`
+- Default value: `Phase 2 Root`
 
 ### parTopLevelManagementGroupParentId
 
@@ -121,13 +121,13 @@ outDecommissionedManagementGroupName | string |
     },
     "parameters": {
         "parTopLevelManagementGroupPrefix": {
-            "value": "alz"
+            "value": "nyl"
         },
         "parTopLevelManagementGroupSuffix": {
             "value": ""
         },
         "parTopLevelManagementGroupDisplayName": {
-            "value": "Azure Landing Zones"
+            "value": "Phase 2 Root"
         },
         "parTopLevelManagementGroupParentId": {
             "value": ""
