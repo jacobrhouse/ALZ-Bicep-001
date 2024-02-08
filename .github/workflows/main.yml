@@ -21,7 +21,6 @@ jobs:
           az group list
 
       - name: 'Run managment group commands'
-        working-directory: src/webclient
         run: |
               dateYMD=$(date +%Y%m%dT%H%M%S%NZ)
               NAME="alz-MGDeployment-${dateYMD}"
