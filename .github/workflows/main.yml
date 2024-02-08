@@ -1,22 +1,18 @@
-name: Run Azure Login with OpenID Connect
+name: Deploy Bicep file
 on: [push]
-
-permissions:
-      id-token: write
-      contents: read
-      
-jobs: 
+jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    environment: 'Azure-Jacob'
     steps:
-    - name: 'Az CLI login'
+
+    - name: Checkout code
+      uses: actions/checkout@main
+
+    - name: Log into Azure
       uses: azure/login@v1
-      
       with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
   
     - name: 'Run Azure CLI commands'
       run: |
